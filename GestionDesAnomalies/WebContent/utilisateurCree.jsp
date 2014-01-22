@@ -35,7 +35,7 @@ value="/inc/style.css"/>" />
 			</p>
 		</c:if>
 		<p>
-			<a href="<c:url value="/menuAdministrateur.jsp"/>">Retour au menu Administrateur</a>
+			<a href="<c:url value="menuAdministrateur.jsp"/>">Retour au menu Administrateur</a>
 		</p>
 				<p>
 			<a href="<c:url value="/menuPrincipal.jsp"/>">Se déconnecter. Retour au menu principal.</a>
