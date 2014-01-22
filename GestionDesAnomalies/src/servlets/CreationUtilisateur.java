@@ -26,7 +26,7 @@ public class CreationUtilisateur extends HttpServlet {
 	public static final String ATT_MESSAGE     = "message";
 	public static final String ATT_ERREUR      = "erreur";
 
-	public static final String VUE             ="/utilisateurCree.jsp";
+	public static final String VUE             ="/WEB-INF/utilisateurCree.jsp";
 
 
 	/**

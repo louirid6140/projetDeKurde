@@ -16,7 +16,7 @@ public class ListerUtilisateurs extends HttpServlet {
 	 public static final String ATT_CREATION = "creation";
 	 public static final String ATT_FORM     = "form";
 	 
-	 public static final String VUE        = "listerUtilisateur.jsp";
+	 public static final String VUE        = "/WEB-INF/listerUtilisateur.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()

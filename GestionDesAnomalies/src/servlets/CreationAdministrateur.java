@@ -27,7 +27,7 @@ public class CreationAdministrateur extends HttpServlet {
 	public static final String PASSWORD   = "admin";
 	
 	
-	public static final String VUE             ="/menuAdministrateur.jsp";
+	public static final String VUE             ="/WEB-INF/menuAdministrateur.jsp";
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
