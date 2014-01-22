@@ -12,7 +12,8 @@ value="/inc/style.css"/>" />
 <body>
 	<div id="corps">
 		<p class="info">${ message }</p>
-		<c:if test="${ !erreur }">
+		<c:choose>
+			<c:when test="${ !erreur }">
 			<p>
 				Nom :
 				<c:out value="${utilisateur.nom }" />
@@ -33,9 +34,12 @@ value="/inc/style.css"/>" />
 				Mot de passe :
 				<c:out value="${utilisateur.password }" />
 			</p>
-		</c:if>
+			</c:when>
+			<c:otherwise> Choix :
+   			 </c:otherwise>
+		</c:choose>
 		<p>
-			<a href="<c:url value="/creationUtilisateur"/>">Retour au menu Administrateur</a>
+			<a href="<c:url value="/creationAdministrateur"/>">Retour au menu Administrateur</a>
 		</p>
 				<p>
 			<a href="<c:url value="/connection"/>">Se déconnecter. Retour au menu principal.</a>
