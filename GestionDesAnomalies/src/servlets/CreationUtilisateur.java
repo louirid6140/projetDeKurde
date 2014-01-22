@@ -26,7 +26,9 @@ public class CreationUtilisateur extends HttpServlet {
 	public static final String ATT_MESSAGE     = "message";
 	public static final String ATT_ERREUR      = "erreur";
 
-	public static final String VUE             ="/WEB-INF/utilisateurCree.jsp";
+	public static final String VUE_SUCCES             ="/WEB-INF/utilisateurCree.jsp";
+	
+	public static final String VUE_FORMULAIRE_CREATION         ="/WEB-INF/creerUtilisateur.jsp";
 
 
 	/**
@@ -41,7 +43,7 @@ public class CreationUtilisateur extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		 this.getServletContext().getRequestDispatcher(VUE_FORMULAIRE_CREATION).forward( request, response );
 	}
 
 	/**
@@ -85,7 +87,7 @@ public class CreationUtilisateur extends HttpServlet {
 		request.setAttribute( ATT_MESSAGE, message );
 		request.setAttribute( ATT_ERREUR, erreur );
 		/* Transmission à la page JSP en charge de l'affichage des données */
-		this.getServletContext().getRequestDispatcher(VUE).forward( request, response );
+		this.getServletContext().getRequestDispatcher(VUE_SUCCES).forward( request, response );
 	}
 
 }

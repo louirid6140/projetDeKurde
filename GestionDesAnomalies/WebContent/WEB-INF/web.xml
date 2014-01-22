@@ -6,19 +6,29 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet>
+    <servlet-name>ConnectionInitiale</servlet-name>
+    <servlet-class>servlets.ConnectionInitiale</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet>
     <servlet-name>CreationUtilisateur</servlet-name>
     <servlet-class>servlets.CreationUtilisateur</servlet-class>
   </servlet>
-   <servlet>
+  <servlet>
     <servlet-name>ListerUtilisateurs</servlet-name>
     <servlet-class>servlets.ListerUtilisateurs</servlet-class>
   </servlet>
-  
+
+
   <servlet-mapping>
     <servlet-name>CreationAdministrateur</servlet-name>
     <url-pattern>/creationAdministrateur</url-pattern>
   </servlet-mapping>
-    <servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ConnectionInitiale</servlet-name>
+    <url-pattern>/connection</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
     <servlet-name>CreationUtilisateur</servlet-name>
     <url-pattern>/creationUtilisateur</url-pattern>
   </servlet-mapping>
@@ -26,7 +36,6 @@
     <servlet-name>ListerUtilisateurs</servlet-name>
     <url-pattern>/listeUtilisateurs</url-pattern>
   </servlet-mapping>
-  
   <jsp-config>
     <jsp-property-group>
       <url-pattern>*.jsp</url-pattern>

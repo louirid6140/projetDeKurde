@@ -26,8 +26,8 @@ public class CreationAdministrateur extends HttpServlet {
 	public static final String LOGIN   = "admin";
 	public static final String PASSWORD   = "admin";
 	
-	
-	public static final String VUE             ="/WEB-INF/menuAdministrateur.jsp";
+	public static final String VUE_FORM_CONNECT ="/WEB-INF/connectionAdministrateur.jsp";
+	public static final String VUE_SUCCES ="/WEB-INF/menuAdministrateur.jsp";
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -40,6 +40,7 @@ public class CreationAdministrateur extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 this.getServletContext().getRequestDispatcher(VUE_FORM_CONNECT).forward( request, response );
 	}
 
 	/**
@@ -66,7 +67,7 @@ public class CreationAdministrateur extends HttpServlet {
 	        l'objet request */
 	        request.setAttribute( ATT_ERREUR, erreurConnection );
 	        request.setAttribute( ATT_RESULTAT, resultatConnection );
-	        this.getServletContext().getRequestDispatcher( VUE).forward( request, response );
+	        this.getServletContext().getRequestDispatcher( VUE_SUCCES).forward( request, response );
 	}
 	private void validationConnectionAdmin( String login, String password ) throws Exception{
 			if(login.equals(LOGIN)==false||password.equals(PASSWORD)==false){
