@@ -16,6 +16,8 @@
 		<p>
 			<a href="<c:url value="/listeUtilisateurs.jsp"/>">Récupérer la liste des utilisateurs</a>
 		</p>
+			<a href="<c:url value="/menuPrincipal.jsp"/>">Se déconnecter. Retour au menu principal.</a>
+		</p>
     </c:otherwise>
 </c:choose>
 </div>
