@@ -9,22 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.Administrateur;
+import forms.connectionAdministrateurForm;
 
 /**
  * Servlet implementation class Servlet
  */
 @WebServlet("/Servlet")
 public class CreationAdministrateur extends HttpServlet {
-	public static final String CHAMP_LOGIN   = "login";
-	public static final String CHAMP_PASSWORD   = "password";
+	
 	
 	public static final String ATT_ERREUR  = "erreur";
     public static final String ATT_RESULTAT = "resultat";
-	/**
-	 * MDP et login de l'administrateur créer des le départ
-	 */
-	public static final String LOGIN   = "admin";
-	public static final String PASSWORD   = "admin";
+
 	
 	public static final String VUE_FORM_CONNECT ="/WEB-INF/connectionAdministrateur.jsp";
 	public static final String VUE_SUCCES ="/WEB-INF/menuAdministrateur.jsp";
@@ -47,33 +43,15 @@ public class CreationAdministrateur extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		boolean erreurConnection=false;
-		String resultatConnection="";
-		String loginAdmin = request.getParameter(CHAMP_LOGIN );
-		String passwordAdmin = request.getParameter(CHAMP_PASSWORD );
-		  try {
-	            validationConnectionAdmin(loginAdmin,passwordAdmin);
-	        } catch (Exception e) {
-	        	erreurConnection=true;
-	        }
-		  /* Initialisation du résultat global de la validation. */
-	        if ( erreurConnection==false ) {
-	        	resultatConnection = "Connection résussie.";
-	        } else {
-	        	resultatConnection = "Echec de la connection.";
-	        }
-	        
+	        connectionAdministrateurForm connectAd = new connectionAdministrateurForm();
+	        Administrateur admin =connectAd.creerAdmin(request);
+	        String resultatConnection=connectAd.getResultatConnection();
+			boolean erreurConnection=connectAd.getErreurConnection();
 	        /* Stockage du résultat et des messages d'erreur dans
 	        l'objet request */
 	        request.setAttribute( ATT_ERREUR, erreurConnection );
 	        request.setAttribute( ATT_RESULTAT, resultatConnection );
 	        this.getServletContext().getRequestDispatcher( VUE_SUCCES).forward( request, response );
-	}
-	private void validationConnectionAdmin( String login, String password ) throws Exception{
-			if(login.equals(LOGIN)==false||password.equals(PASSWORD)==false){
-				 throw new Exception( "Le pseudo et/ou le mot de passe sont incorrects" );
-			}
-		
 	}
 
 }
