@@ -46,5 +46,9 @@
 				value="Remettre à zéro" /> <br />
 		</form>
 	</div>
+	 <c:if test="${!emptysessionScope.sessionAdministrateur}">
+                    <%-- Si l'administrateur existe en session, alors on affiche son login. --%>
+       <p class="succes">Vous êtes connecté(e) avec l'adresse : ${sessionScope.sessionAdministrateur.login}</p>
+</c:if>
 </body>
 </html>

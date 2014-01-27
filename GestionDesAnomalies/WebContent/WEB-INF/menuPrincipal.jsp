@@ -6,4 +6,9 @@
 	<p>
 		<a href="<c:url value="/connectionUtilisateur"/>">Se connecter en tant qu'utilisateur</a>
 	</p>
+
+<c:if test="${!emptysessionScope.sessionAdministrateur}">
+                    <%-- Si l'administrateur existe en session, alors on affiche son login. --%>
+       <p class="succes">Vous êtes connecté(e) avec l'adresse : ${sessionScope.sessionAdministrateur.login}</p>
+</c:if>
 </div>

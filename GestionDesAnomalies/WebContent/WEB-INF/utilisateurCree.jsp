@@ -42,8 +42,13 @@ value="/inc/style.css"/>" />
 			<a href="<c:url value="/creationAdministrateur"/>">Retour au menu Administrateur</a>
 		</p>
 				<p>
-			<a href="<c:url value="/connection"/>">Se déconnecter. Retour au menu principal.</a>
+			<a href="<c:url value="/Deconnection"/>">Se déconnecter. Retour au menu principal.</a>
 		</p>
 	</div>
+	
+	 <c:if test="${!emptysessionScope.sessionAdministrateur}">
+                    <%-- Si l'administrateur existe en session, alors on affiche son login. --%>
+       <p class="succes">Vous êtes connecté(e) avec l'adresse : ${sessionScope.sessionAdministrateur.login}</p>
+</c:if>
 </body>
 </html>

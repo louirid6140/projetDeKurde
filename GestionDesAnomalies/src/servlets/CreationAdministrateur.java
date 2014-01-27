@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import beans.Administrateur;
 import forms.connectionAdministrateurForm;
@@ -24,6 +25,9 @@ public class CreationAdministrateur extends HttpServlet {
 	
 	public static final String VUE_FORM_CONNECT ="/WEB-INF/connectionAdministrateur.jsp";
 	public static final String VUE_SUCCES ="/WEB-INF/menuAdministrateur.jsp";
+	
+    //attribut de création d'une session administrateur
+    public static final String ATT_SESSION_ADMIN = "sessionAdministrateur";
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -44,9 +48,21 @@ public class CreationAdministrateur extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	        connectionAdministrateurForm connectAd = new connectionAdministrateurForm();
+			/* Récupération de la session depuis la requête */
+	        HttpSession session = request.getSession();
+	        
 	        Administrateur admin =connectAd.creerAdmin(request);
 	        String resultatConnection=connectAd.getResultatConnection();
 			boolean erreurConnection=connectAd.getErreurConnection();
+			//Récupération des attributs de la session
+			if (erreurConnection==false){
+				
+				session.setAttribute( ATT_SESSION_ADMIN, admin );
+			}
+			else 
+			{
+				session.setAttribute( ATT_SESSION_ADMIN, null );
+			}
 	        /* Stockage du résultat et des messages d'erreur dans
 	        l'objet request */
 	        request.setAttribute( ATT_ERREUR, erreurConnection );

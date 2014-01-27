@@ -9,8 +9,8 @@ value="/inc/style.css"/>" />
 </head>
 <body>
 	<div>
-		<form method="get" action="<c:url
-value="/menuUtilisateur"/>">
+		<form method="post" action="<c:url
+value="/connectionUtilisateur"/>">
 			<fieldset>
 				<legend>Informations utilisateur</legend>
 				<c:import url="/inc/inc_connection_form.jsp" />

@@ -26,6 +26,8 @@ public class CreationUtilisateur extends HttpServlet {
 	public static final String VUE_SUCCES             ="/WEB-INF/utilisateurCree.jsp";
 	
 	public static final String VUE_FORMULAIRE_CREATION         ="/WEB-INF/creerUtilisateur.jsp";
+	
+
 
 
 	/**

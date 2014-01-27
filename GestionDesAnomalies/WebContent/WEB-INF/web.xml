@@ -18,8 +18,14 @@
     <servlet-name>ListerUtilisateurs</servlet-name>
     <servlet-class>servlets.ListerUtilisateurs</servlet-class>
   </servlet>
-
-
+  <servlet>
+    <servlet-name>ConnectionUtilisateur</servlet-name>
+    <servlet-class>servlets.ConnectionUtilisateur</servlet-class>
+  </servlet>
+    <servlet>
+    <servlet-name>DeconnectionAdmin</servlet-name>
+    <servlet-class>servlets.DeconnectionAdmin</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>CreationAdministrateur</servlet-name>
     <url-pattern>/creationAdministrateur</url-pattern>
@@ -35,6 +41,14 @@
   <servlet-mapping>
     <servlet-name>ListerUtilisateurs</servlet-name>
     <url-pattern>/listeUtilisateurs</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ConnectionUtilisateur</servlet-name>
+    <url-pattern>/connectionUtilisateur</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>DeconnectionAdmin</servlet-name>
+    <url-pattern>/Deconnection</url-pattern>
   </servlet-mapping>
   <jsp-config>
     <jsp-property-group>
