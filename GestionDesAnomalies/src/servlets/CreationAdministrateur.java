@@ -40,7 +40,13 @@ public class CreationAdministrateur extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 this.getServletContext().getRequestDispatcher(VUE_FORM_CONNECT).forward( request, response );
+		HttpSession session = request.getSession();
+		if(session.getAttribute(ATT_SESSION_ADMIN)==null){
+			this.getServletContext().getRequestDispatcher(VUE_FORM_CONNECT).forward( request, response );
+		}
+		else{
+			this.getServletContext().getRequestDispatcher(VUE_SUCCES).forward( request, response );
+		}
 	}
 
 	/**

@@ -1,4 +1,14 @@
 <%@ page pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Menu Administrateur</title>
+<link type="text/css" rel="stylesheet"
+	href="<c:url 
+	value="/inc/style.css"/>" />
+</head>
+<body>
 <div id="menu">
 <c:choose>
     <c:when test="${erreur==true}">Le pseudo et/ou le mot de passe sont incorrects.
@@ -25,3 +35,5 @@
 </c:if>
 
 </div>
+</body>
+</html>
