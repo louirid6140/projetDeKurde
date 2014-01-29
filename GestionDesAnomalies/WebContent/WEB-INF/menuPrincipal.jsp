@@ -17,16 +17,6 @@
 		<p>
 			<a href="<c:url value="/connectionUtilisateur"/>">Se connecter en tant qu'utilisateur</a>
 		</p>
-
-		<c:choose>
-			<c:when test="${!emptysessionScope.sessionAdministrateur}">
-				<%-- Si l'administrateur existe en session, alors on affiche son login. --%>
-				<p class="succes">Vous êtes connecté(e) avec l'adresse :
-					${sessionScope.sessionAdministrateur.login}</p>
-			</c:when>
-			<c:otherwise> Coucou
-		</c:otherwise>
-		</c:choose>
 	</div>
 </body>
 </html>
