@@ -4,22 +4,17 @@ import java.util.ArrayList;
 
 public class Anomalie {
 	private String sujet;
-	private String	description; // Attention , il faudra vérifier que la taille est inférieure à 255 caract
+	private String	description;
 	private String etat;
-	private Utilisateur utilisateurAff;
-	private ArrayList<String> notes;
+	private String nomUtilisateurAff;
+	private ArrayList<String> notes = new ArrayList<String>();
 	
-	private ArrayList<String> listeDesEtats; 
 
 	
 	
 	
 	public Anomalie() {
 		super();
-		listeDesEtats.add("NOUVEAU");
-		listeDesEtats.add("AFFECTEE");
-		listeDesEtats.add("RESOLUE");
-		listeDesEtats.add("FERMEE");
 	}
 	//Getters and setters utiles
 	public String getSujet() {
@@ -40,11 +35,11 @@ public class Anomalie {
 	public void setEtat(String etat) {
 		this.etat = etat;
 	}
-	public Utilisateur getUtilisateurAff() {
-		return utilisateurAff;
+	public String getNomUtilisateurAff() {
+		return nomUtilisateurAff;
 	}
-	public void setUtilisateurAff(Utilisateur utilisateurAff) {
-		this.utilisateurAff = utilisateurAff;
+	public void setNomtUtilisateurAff(String nomUtilisateurAff) {
+		this.nomUtilisateurAff = nomUtilisateurAff;
 	}
 	public ArrayList<String> getNotes() {
 		return notes;

@@ -22,13 +22,13 @@
 			</c:when>
 			<c:otherwise>Vous êtes connecté en tant qu'utilisateur.
 					<p>
-						<a href="<c:url value="ajouterProjet.jsp"/>">Ajouter projet</a>
+						<a href="<c:url value="/projets"/>">Ajouter projet</a>
 					</p>
 					
 					<p>
-						<a href="<c:url value="modificationCaractProjet.jsp"/>">Modifier
-						caractéristiques projet</a>
+						<a href="<c:url value="/anomalies"/>">Ajouter une anomalie</a>
 					</p>
+				
 					
 					<a href="<c:url value="/Deconnection"/>">Se déconnecter. Retour au menu principal.</a>
 

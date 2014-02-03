@@ -56,6 +56,7 @@ public class creationUtilisateurForm {
 	private static String getValeurChamp( HttpServletRequest
 			request, String nomChamp ) {
 		String valeur = request.getParameter( nomChamp );
+		
 		if ( valeur == null || valeur.trim().length() == 0 ) {
 			return "";
 		} else {

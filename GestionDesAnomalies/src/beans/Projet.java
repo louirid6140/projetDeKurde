@@ -13,6 +13,9 @@ public class Projet {
 	public String getNomProjet() {
 		return nomProjet;
 	} 
+	public void setNomProjet(String nomProjet) {
+		this.nomProjet = nomProjet;
+	}
 	
 	
 }

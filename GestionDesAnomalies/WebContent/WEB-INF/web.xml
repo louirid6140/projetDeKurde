@@ -22,9 +22,17 @@
     <servlet-name>ConnectionUtilisateur</servlet-name>
     <servlet-class>servlets.ConnectionUtilisateur</servlet-class>
   </servlet>
-    <servlet>
+  <servlet>
     <servlet-name>DeconnectionSession</servlet-name>
     <servlet-class>servlets.DeconnectionSession</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AjouterUnProjet</servlet-name>
+    <servlet-class>servlets.AjouterUnProjet</servlet-class>
+  </servlet>
+    <servlet>
+    <servlet-name>AjouterUneAnomalie </servlet-name>
+    <servlet-class>servlets.AjouterUneAnomalie </servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>CreationAdministrateur</servlet-name>
@@ -46,9 +54,17 @@
     <servlet-name>ConnectionUtilisateur</servlet-name>
     <url-pattern>/connectionUtilisateur</url-pattern>
   </servlet-mapping>
-    <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>DeconnectionSession</servlet-name>
     <url-pattern>/Deconnection</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AjouterUnProjet</servlet-name>
+    <url-pattern>/projets</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>AjouterUneAnomalie</servlet-name>
+    <url-pattern>/anomalies</url-pattern>
   </servlet-mapping>
   <jsp-config>
     <jsp-property-group>
