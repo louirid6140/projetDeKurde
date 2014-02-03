@@ -23,8 +23,8 @@
     <servlet-class>servlets.ConnectionUtilisateur</servlet-class>
   </servlet>
     <servlet>
-    <servlet-name>DeconnectionAdmin</servlet-name>
-    <servlet-class>servlets.DeconnectionAdmin</servlet-class>
+    <servlet-name>DeconnectionSession</servlet-name>
+    <servlet-class>servlets.DeconnectionSession</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>CreationAdministrateur</servlet-name>
@@ -47,7 +47,7 @@
     <url-pattern>/connectionUtilisateur</url-pattern>
   </servlet-mapping>
     <servlet-mapping>
-    <servlet-name>DeconnectionAdmin</servlet-name>
+    <servlet-name>DeconnectionSession</servlet-name>
     <url-pattern>/Deconnection</url-pattern>
   </servlet-mapping>
   <jsp-config>

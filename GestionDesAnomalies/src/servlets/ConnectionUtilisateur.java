@@ -25,7 +25,8 @@ public class ConnectionUtilisateur extends HttpServlet {
 	public static final String ATT_ERREUR  = "erreur";
     public static final String ATT_RESULTAT = "resultat";
     
-
+    //attribut de création d'une session administrateur
+    public static final String ATT_SESSION_UTIL = "sessionUtilisateur";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -39,7 +40,14 @@ public class ConnectionUtilisateur extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 this.getServletContext().getRequestDispatcher(VUE_CONNECT_UTIL ).forward( request, response );
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute(ATT_SESSION_UTIL)==null){
+			this.getServletContext().getRequestDispatcher(VUE_CONNECT_UTIL).forward( request, response );
+		}
+		else{
+			this.getServletContext().getRequestDispatcher(VUE_SUCCES).forward( request, response );
+		}
 	}
 
 	/**
@@ -47,10 +55,23 @@ public class ConnectionUtilisateur extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			connectionUtilisateurForm connectUser = new connectionUtilisateurForm();
+			/* Récupération de la session depuis la requête */
+	        HttpSession session = request.getSession();
 
 	        Utilisateur user =connectUser.creerUser(request);
 	        String resultatConnection=connectUser.getResultatConnection();
 			boolean erreurConnection=connectUser.getErreurConnection();
+			
+			//Récupération des attributs de la session
+			if (erreurConnection==false){
+				
+				session.setAttribute( ATT_SESSION_UTIL, user );
+			}
+			else 
+			{
+				session.setAttribute( ATT_SESSION_UTIL, null );
+			}
+	        
 			
 
 	        /* Stockage du résultat et des messages d'erreur dans

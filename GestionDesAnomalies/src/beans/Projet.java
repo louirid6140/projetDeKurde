@@ -3,6 +3,7 @@ package beans;
 public class Projet {
 	private String nomProjet ;  //Doit être unique 
 	private String caracProjet;
+	
 	public String getCaracProjet() {
 		return caracProjet;
 	}

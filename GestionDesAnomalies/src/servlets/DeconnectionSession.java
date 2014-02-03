@@ -12,15 +12,15 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class DeconnectionAdmin
  */
-@WebServlet("/DeconnectionAdmin")
-public class DeconnectionAdmin extends HttpServlet {
+@WebServlet("/DeconnectionSession")
+public class DeconnectionSession extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final String URL_REDIRECTION ="http://localhost:8080/GestionDesAnomalies/connection";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public DeconnectionAdmin() {
+	public DeconnectionSession() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
