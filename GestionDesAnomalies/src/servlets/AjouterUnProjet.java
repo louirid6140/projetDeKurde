@@ -12,17 +12,40 @@ import beans.Projet;
 import forms.creationProjetForm;
 
 /**
- * Servlet implementation class AjouterUnProjet
+ * <b>AjouterUnProjet est une servlet permettant d'ajouter un PROJET. C'est une servlet ( qu on peut assimiler à un controleur). 
+ * Elle demande au metier de faire des actions recupere les informations et demande à la vue de les afficheer.</b>
  */
 @WebServlet("/AjouterUnProjet")
+
+
 public class AjouterUnProjet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * ATT_ANOMALIE   constante donnant un nom a l attribut projet
+	 */
 	public static final String ATT_PROJET     = "projet";
+	
+	/**
+	 * ATT_MESSAGE   constante donnant un nom a l attribut message
+	 */
 	public static final String ATT_MESSAGE     = "message";
+	
+	/**
+	 * ATT_ERREUR    constante donnant un nom a l attribut erreur
+	 */
 	public static final String ATT_ERREUR      = "erreur";
 
+	/**
+	 * VUE_SUCCES    constante donnant l url de la page à afficher en cas de succes
+	 */
 	public static final String VUE_SUCCES             ="/WEB-INF/projetCree.jsp";
+	
+	
+	/**
+	 * VUE_FORMULAIRE_ANOMALIE    constante donnant l url de la page à afficher pour creer un projet
+	 */
+	
 	
 	public static final String VUE_FORMULAIRE_PROJET        ="/WEB-INF/ajouterProjet.jsp";
        
@@ -35,6 +58,7 @@ public class AjouterUnProjet extends HttpServlet {
     }
 
 	/**
+	 * Permet d'afficher la page de formulaire à remplir pour creer un projet en cas de requete de type GET
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,6 +66,7 @@ public class AjouterUnProjet extends HttpServlet {
 	}
 
 	/**
+	 * Permet de creer un projet et d'afficher la page de de synthese de projet en cas de succes et pour une requete de type POST
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

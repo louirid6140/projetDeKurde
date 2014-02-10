@@ -13,20 +13,39 @@ import beans.Utilisateur;
 import forms.connectionUtilisateurForm;
 
 /**
- * Servlet implementation class ConnectionUtilisateur
+ * <b>ConnectionUtilisateur est une servlet permettant de se connecter en tant qu utilisateur.
+ *  C'est une servlet ( qu on peut assimiler à un controleur). 
+ * Elle demande au metier de faire des actions recupere les informations et demande à la vue de les afficheer.</b>
  */
 @WebServlet("/ConnectionUtilisateur")
+
+
 public class ConnectionUtilisateur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static final String VUE_CONNECT_UTIL       ="/WEB-INF/connectionUtilisateur.jsp";
-	
-	//Participe à la création en dur d'un User
-	public static final String VUE_SUCCES       ="/WEB-INF/menuUtilisateur.jsp";
+	/**
+	 * ATT_ERREUR    constante donnant un nom a l attribut erreur
+	 */
 	public static final String ATT_ERREUR  = "erreur";
+	/**
+	 * ATT_RESULTAT   constante donnant un nom a l attribut message
+	 */
     public static final String ATT_RESULTAT = "resultat";
     
-    //attribut de création d'une session administrateur
+	/**
+	 * ATT_SESSION_UTIL    constante donnant un nom a l attribut session de l'utilisateur
+	 */
     public static final String ATT_SESSION_UTIL = "sessionUtilisateur";
+    
+	/**
+	 * VUE_CONNECT_UTIL    constante donnant l url de la page à afficher pour se connecter en tant qu utilisateur
+	 */
+	
+	public static final String VUE_CONNECT_UTIL       ="/WEB-INF/connectionUtilisateur.jsp";
+	
+	/**
+	 * VUE_SUCCES    constante donnant l url de la page à afficher en cas de succes
+	 */
+	public static final String VUE_SUCCES       ="/WEB-INF/menuUtilisateur.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -37,6 +56,8 @@ public class ConnectionUtilisateur extends HttpServlet {
     }
 
 	/**
+	 * En cas de requete de type GET, permet d'afficher la page de formulaire à remplir pour se connecter en tant qu'utilisateur
+	 * s'il n'est pas deja connecte ou si c'est deja le cas d'arriver directement sur le menu utilisateur
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -51,6 +72,7 @@ public class ConnectionUtilisateur extends HttpServlet {
 	}
 
 	/**
+	 * Pour une requete de type POST, gere la connexion en tant qu utilisateur. En cas de succes, une session utilisateur est creee
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

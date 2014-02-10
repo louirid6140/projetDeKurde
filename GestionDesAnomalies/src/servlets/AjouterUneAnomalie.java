@@ -1,5 +1,6 @@
 package servlets;
 
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -12,17 +13,38 @@ import beans.Anomalie;
 import forms.creationAnomalieForm;
 
 /**
- * Servlet implementation class AjouterUneAnomalie
+ * <b>AjouterUneAnomalie est une servlet permettant d'ajouter une anomalie. C'est une servlet ( qu on peut assimiler à un controleur). 
+ * Elle demande au metier de faire des actions recupere les informations et demande à la vue de les afficheer.</b>
  */
+
 @WebServlet("/AjouterUneAnomalie")
 public class AjouterUneAnomalie extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * ATT_ANOMALIE   constante donnant un nom a l attribut anomalie
+	 */
 	public static final String ATT_ANOMALIE    = "anomalie";
+	
+	/**
+	 * ATT_MESSAGE   constante donnant un nom a l attribut message
+	 */
 	public static final String ATT_MESSAGE     = "message";
+	
+	/**
+	 * ATT_ERREUR    constante donnant un nom a l attribut erreur
+	 */
 	public static final String ATT_ERREUR      = "erreur";
+	
+	/**
+	 * VUE_SUCCES    constante donnant l url de la page à afficher en cas de succes
+	 */
 
-	public static final String VUE_SUCCES             ="/WEB-INF/anomalieCree.jsp";
+	public static final String VUE_SUCCES       ="/WEB-INF/anomalieCree.jsp";
+	
+	/**
+	 * VUE_FORMULAIRE_ANOMALIE    constante donnant l url de la page à afficher pour creer une anomalie
+	 */
 	
 	public static final String VUE_FORMULAIRE_ANOMALIE        ="/WEB-INF/ajouterAnomalie.jsp";
        
@@ -42,6 +64,7 @@ public class AjouterUneAnomalie extends HttpServlet {
 	}
 
 	/**
+	 * Permet de creer une anomalie et d'afficher la page de de synthese de l anomalie en cas de succes et pour une requte de type POST
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

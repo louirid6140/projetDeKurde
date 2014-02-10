@@ -13,21 +13,46 @@ import beans.Administrateur;
 import forms.connectionAdministrateurForm;
 
 /**
- * Servlet implementation class Servlet
+ * <b>CreationAdministrateur est une servlet permettant de creer l administrateur.
+ * ATTENTION ! Cette servlet est utilisee des le premier deploiement.
+ *  C'est une servlet ( qu on peut assimiler à un controleur). 
+ * Elle demande au metier de faire des actions recupere les informations et demande à la vue de les afficheer.</b>
  */
 @WebServlet("/Servlet")
+
 public class CreationAdministrateur extends HttpServlet {
 	
+	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * ATT_ERREUR    constante donnant un nom a l attribut erreur
+	 */
 	public static final String ATT_ERREUR  = "erreur";
+	
+	/**
+	 * ATT_RESULTAT   constante donnant un nom a l attribut message
+	 */
     public static final String ATT_RESULTAT = "resultat";
+    
+	/**
+	 * ATT_SESSION_ADMIN   constante donnant un nom a l attribut session de l'administrateur
+	 */
+    
+    public static final String ATT_SESSION_ADMIN = "sessionAdministrateur";
 
+	/**
+	 * VUE_FORM_CONNECT    constante donnant l url de la page à afficher pour se connecter en tant qu administrateur
+	 */
+	
 	
 	public static final String VUE_FORM_CONNECT ="/WEB-INF/connectionAdministrateur.jsp";
+	
+	/**
+	 * VUE_SUCCES    constante donnant l url de la page à afficher en cas de succes
+	 */
 	public static final String VUE_SUCCES ="/WEB-INF/menuAdministrateur.jsp";
 	
-    //attribut de création d'une session administrateur
-    public static final String ATT_SESSION_ADMIN = "sessionAdministrateur";
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -37,6 +62,8 @@ public class CreationAdministrateur extends HttpServlet {
 	}
 
 	/**
+	 * En cas de requete de type GET, permet d'afficher la page de formulaire à remplir pour se connecter en tant qu'administrateur
+	 * s'il n'est pas deja connecte ou si c'est deja le cas d'arriver directement sur le menu administrateur
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -50,6 +77,7 @@ public class CreationAdministrateur extends HttpServlet {
 	}
 
 	/**
+	 * Pour une requete de type POST, gere la connexion en tant qu adminstrateur. En cas de succes, une session administrateur est creee
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
