@@ -46,7 +46,7 @@ public class AjouterUneAnomalie extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		creationAnomalieForm anoForm = new creationAnomalieForm();
-		Anomalie ano=anoForm.CreerProjet(request);
+		Anomalie ano=anoForm.CreerAnomalie(request);
 		String message=anoForm.getMessage();
 		boolean erreur=anoForm.getErreur();
 		/* Ajout du bean et du message à l'objet requête */
