@@ -1,8 +1,13 @@
 package forms;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import beans.Utilisateur;
+import dao.UtilisateurDao;
 /**
  * <b>creationUtilisateurForm est la classe representant le formulaire de creation d'un utilisateur. C'est une classe formulaire.</b>
  * <p>
@@ -34,38 +39,49 @@ public class creationUtilisateurForm {
 	 * CHAMP_PASSWORD   constante correspondant au champ du  mot de passe de l utilisateur
 	 */
 	private static final String CHAMP_PASSWORD   = "passwordUtilisateur";
-	
-    /**
-     *message correspond au resultat de la creation en chaine de caractere
-     * e.g "creation reussie"
-     * 
-     */
+
+	/**
+	 *message correspond au resultat de la creation en chaine de caractere
+	 * e.g "creation reussie"
+	 * 
+	 */
 	private String message;
-	
-    /**
-     *erreur correspond a un booleen vrai si il y a une erreur de creation faux sinon
-     * 
-     */
+
+	/**
+	 *erreur correspond a un booleen vrai si il y a une erreur de creation faux sinon
+	 * 
+	 */
 	private Boolean erreur;
+
+	private Map<String, String> erreurs = new HashMap<String, String>();
+	private UtilisateurDao utilisateurDao;
 	
-	
-    /**
-     * Retourne le resultat de la creation
-     * 
-     * @return resultat creation.
-     */
+	public creationUtilisateurForm( UtilisateurDao utilisateurDao ) {
+        this.utilisateurDao = utilisateurDao;
+    }
+
+
+	/**
+	 * Retourne le resultat de la creation
+	 * 
+	 * @return resultat creation.
+	 */
 	public String getMessage() {
 		return message;
 	}
-    /**
-     * Retourne si il y a eu une erreur de creation ou non
-     * 
-     * @return erreur creation.
-     */
+	/**
+	 * Retourne si il y a eu une erreur de creation ou non
+	 * 
+	 * @return erreur creation.
+	 */
 	public Boolean getErreur() {
 		return erreur;
 	}
-	
+
+	public Map<String, String> getErreurs() {
+		return erreurs;
+	}
+
 	/**
 	 * Retourne un utilisateur en fonction des champs renseignes et
 	 * determine le resultat de la creation en fonction des champs renseignes
@@ -84,13 +100,22 @@ public class creationUtilisateurForm {
 		util.setLogin( login );
 		util.setPassword( password);
 		
+
 		if ( nom.trim().isEmpty() || prenom.trim().isEmpty() ||
 				adresse.trim().isEmpty() ||login.trim().isEmpty() ||password.trim().isEmpty() ) {
 			message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. <br> <a href=\"creerUtilisateur.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un utilisateur.";
 			erreur = true;
 		} else {
+			utilisateurDao.creer( util );
 			message = "Utilisateur créé avec succès !";
 			erreur = false;
+		}
+	
+		
+		List<Utilisateur> al = utilisateurDao.trouverTous();
+		System.out.println("Ouai c'est la taille : "+al.size());
+		for(int i=0; i<=al.size()-1; i++){
+			System.out.println(al.get(i));
 		}
 		
 		return(util);
@@ -104,13 +129,13 @@ public class creationUtilisateurForm {
 	private static String getValeurChamp( HttpServletRequest
 			request, String nomChamp ) {
 		String valeur = request.getParameter( nomChamp );
-		
+
 		if ( valeur == null || valeur.trim().length() == 0 ) {
 			return "";
 		} else {
 			return valeur;
 		}
 	}
-	
+
 }
 

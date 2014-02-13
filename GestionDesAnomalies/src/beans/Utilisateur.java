@@ -1,5 +1,11 @@
 package beans;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * <b>Utilisateur est la classe representant un utilisateur du systeme. C'est une classe bean.</b>
  * <p>
@@ -13,8 +19,15 @@ package beans;
  * </ul>
  * </p>
  */
+@Entity
 public class Utilisateur {
-    /**
+	
+	@Id
+	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	private Long id_util;
+
+
+	/**
      *nom correspond au nom de l'utilisateur
      * e.g "Loir-Mongazon"
      * 
@@ -46,7 +59,16 @@ public class Utilisateur {
      * e.g "motDePasse"
      * 
      */
+	@Column( name = "mot_de_passe" )
 	private String password;
+	
+	
+	/**
+	 * @return l'identifiant de l'utilisateur
+	 */
+	  public Long getId_util() {
+			return id_util;
+		}
 	
     /**
      * Retourne le prenom de l'utilisateur
@@ -139,5 +161,10 @@ public class Utilisateur {
 	public void setPassword( String password ) {
 
 		this.password = password;
+	}
+	
+	public String toString(){
+		return ("Utilisateur : "+this.id_util+", Nom : "+this.nom+", Prénom : "+this.prenom+
+				", email : "+this.email+", login : "+this.login);
 	}
 }

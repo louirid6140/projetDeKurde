@@ -26,7 +26,7 @@
 						utilisateur</a>
 				</p>
 				<p>
-					<a href="<c:url value="listeUtilisateurs.jsp"/>">Récupérer la
+					<a href="<c:url value="/listeUtilisateurs"/>">Récupérer la
 						liste des utilisateurs</a>
 				</p>
 

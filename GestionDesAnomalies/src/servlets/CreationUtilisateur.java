@@ -2,14 +2,16 @@ package servlets;
 
 import java.io.IOException;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import forms.creationUtilisateurForm;
 import beans.Utilisateur;
+import dao.UtilisateurDao;
+import forms.creationUtilisateurForm;
 
 /**
  * <b>CreationUtilisateur est une servlet permettant d'ajouter un utilisateur. C'est une servlet ( qu on peut assimiler à un controleur). 
@@ -40,7 +42,7 @@ public class CreationUtilisateur extends HttpServlet {
 	/**
 	 * VUE_SUCCES    constante donnant l url de la page à afficher en cas de succes
 	 */
-	public static final String VUE_SUCCES             ="/WEB-INF/utilisateurCree.jsp";
+	public static final String VUE_SUCCES ="/WEB-INF/utilisateurCree.jsp";
 	
 	/**
 	 * VUE_FORMULAIRE_ANOMALIE    constante donnant l url de la page à afficher pour creer un projet
@@ -49,7 +51,11 @@ public class CreationUtilisateur extends HttpServlet {
 	
 	public static final String VUE_FORMULAIRE_CREATION         ="/WEB-INF/creerUtilisateur.jsp";
 	
-
+	/**
+	 * On injecte l'EJB
+	 */
+	@EJB
+    private UtilisateurDao   utilisateurDao;
 
 
 	/**
@@ -73,7 +79,8 @@ public class CreationUtilisateur extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		creationUtilisateurForm utilForm = new creationUtilisateurForm();
+		/* Préparation de l'objet formulaire */
+		creationUtilisateurForm utilForm = new creationUtilisateurForm(utilisateurDao);
 		Utilisateur util=utilForm.CreerUtilisateur(request);
 		String message=utilForm.getMessage();
 		boolean erreur=utilForm.getErreur();
