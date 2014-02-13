@@ -46,10 +46,7 @@ public class ListerUtilisateurs extends HttpServlet {
 		des clients */
 		
 		List<Utilisateur> al = utilisateurDao.trouverTous();
-		System.out.println("Ouai c'est la taille : "+al.size());
-		for(int i=0; i<=al.size()-1; i++){
-			System.out.println(al.get(i));
-		}
+
 		
 		/* Création de la liste et des données */
 		  List<Map<String, String>> liste = new ArrayList<Map<String, String>>();

@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.Projet;
+import dao.ProjetDao;
 import forms.creationProjetForm;
 
 /**
@@ -48,6 +50,12 @@ public class AjouterUnProjet extends HttpServlet {
 	
 	
 	public static final String VUE_FORMULAIRE_PROJET        ="/WEB-INF/ajouterProjet.jsp";
+	
+	/**
+	 * On injecte l'EJB
+	 */
+	@EJB
+    private ProjetDao   projetDao;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -70,7 +78,7 @@ public class AjouterUnProjet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		creationProjetForm projForm =new creationProjetForm();
+		creationProjetForm projForm = new creationProjetForm(projetDao);
 		Projet proj=projForm.CreerProjet(request);
 		String message=projForm.getMessage();
 		boolean erreur=projForm.getErreur();

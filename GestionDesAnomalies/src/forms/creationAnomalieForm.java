@@ -1,8 +1,12 @@
 package forms;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import beans.Anomalie;
+import dao.AnomalieDao;
 
 /**
  * <b>creationAnomalieForm est la classe representant le formulaire de creation d'une anomalie. C'est une classe formulaire.</b>
@@ -55,6 +59,12 @@ public class creationAnomalieForm {
      */
 	private Boolean erreur;
 
+	private Map<String, String> erreurs = new HashMap<String, String>();
+	private AnomalieDao anomalieDao;
+	
+	public creationAnomalieForm( AnomalieDao anomalieDao ) {
+        this.anomalieDao = anomalieDao;
+    }
 
     /**
      * Retourne le resultat de la creation
@@ -74,6 +84,10 @@ public class creationAnomalieForm {
 		return erreur;
 	}
 	
+	public Map<String, String> getErreurs() {
+		return erreurs;
+	}
+	
 	/**
 	 * Retourne une anomalie en fonction des champs renseignes et
 	 * determine le resultat de la creation en fonction des champs renseignes
@@ -86,10 +100,8 @@ public class creationAnomalieForm {
 		String utilAnomalie = getValeurChamp( request, CHAMP_UTIL_ANOMALIE );
 		String noteAnomalie = getValeurChamp( request, CHAMP_NOTE_ANOMALIE );
 		
-		System.out.println(request.getParameter( CHAMP_ETAT_ANOMALIE ));
+		//System.out.println(request.getParameter( CHAMP_ETAT_ANOMALIE ));
 		
-		
-
 		Anomalie ano = new Anomalie();
 		ano.setSujet(sujetAnomalie);
 		ano.setDescription(desAnomalie);
@@ -102,6 +114,7 @@ public class creationAnomalieForm {
 			message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. <br> <a href=\"projets\">Cliquez ici</a> pour accéder au formulaire de création d'un projet.";
 			erreur = true;
 		} else {
+			anomalieDao.creer(ano);
 			message = "Anomalie créée avec succès !";
 			erreur = false;
 		}

@@ -1,7 +1,6 @@
 package forms;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -109,15 +108,7 @@ public class creationUtilisateurForm {
 			utilisateurDao.creer( util );
 			message = "Utilisateur créé avec succès !";
 			erreur = false;
-		}
-	
-		
-		List<Utilisateur> al = utilisateurDao.trouverTous();
-		System.out.println("Ouai c'est la taille : "+al.size());
-		for(int i=0; i<=al.size()-1; i++){
-			System.out.println(al.get(i));
-		}
-		
+		}		
 		return(util);
 	}
 

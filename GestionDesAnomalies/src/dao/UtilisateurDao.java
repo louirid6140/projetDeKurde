@@ -13,9 +13,9 @@ import beans.Utilisateur;
 
 @Stateless
 public class UtilisateurDao {
-	private static final String JPQL_SELECT_PAR_EMAIL = "SELECT u FROM Utilisateur u WHERE u.email=:email";
+	private static final String JPQL_SELECT_PAR_LOGIN = "SELECT u FROM Utilisateur u WHERE u.login=:login";
 	private static final String JPQL_SELECT_PAR_ID = "SELECT u FROM Utilisateur u WHERE u.id_util=:id_util";
-	private static final String PARAM_EMAIL           = "email";
+	private static final String PARAM_LOGIN           = "login";
 	private static final String PARAM_ID           = "id_util";
 
 	// Injection du manager, qui s'occupe de la connexion avec la BDD
@@ -41,10 +41,10 @@ public class UtilisateurDao {
 	 * @return
 	 * @throws DAOException
 	 */
-	public Utilisateur trouver( String email ) throws DAOException {
+	public Utilisateur trouver( String login ) throws DAOException {
 		Utilisateur utilisateur = null;
-		Query requete = em.createQuery( JPQL_SELECT_PAR_EMAIL );
-		requete.setParameter( PARAM_EMAIL, email );
+		Query requete = em.createQuery( JPQL_SELECT_PAR_LOGIN );
+		requete.setParameter( PARAM_LOGIN, login );
 		try {
 			utilisateur = (Utilisateur) requete.getSingleResult();
 		} catch ( NoResultException e ) {

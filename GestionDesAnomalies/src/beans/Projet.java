@@ -1,7 +1,9 @@
 package beans;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -18,7 +20,7 @@ import javax.persistence.Id;
 public class Projet {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	private Long id_projet; 
 
 	/**
@@ -33,6 +35,7 @@ public class Projet {
 	 * e.g "Echeances, nombre de personnes"
 	 * 
 	 */
+	@Column( name = "caracProjet" )
 	private String caracProjet;
 
 	/**
