@@ -60,7 +60,7 @@ public class Anomalie {
 	 * e.g "tests effectués"
 	 * 
 	 */
-	private ArrayList<String> notes = new ArrayList<String>();
+	private String notes;
 
 	/**
 	 * Constructeur d'un anomalie
@@ -157,7 +157,7 @@ public class Anomalie {
 	 * 
 	 * @return notes.
 	 */
-	public ArrayList<String> getNotes() {
+	public String getNotes() {
 		return notes;
 	}
 
@@ -167,9 +167,9 @@ public class Anomalie {
 	 * @param nouvelleNote
 	 * 
 	 */
-	public ArrayList<String> ajouterNote(String nouvelleNote){
-		notes.add(nouvelleNote);
-		return notes;
+	public void ajouterNote(String nouvelleNote){
+		notes= nouvelleNote;
+		
 	}
 
 
