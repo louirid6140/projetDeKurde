@@ -1,8 +1,5 @@
 package forms;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 
 import beans.Utilisateur;
@@ -52,7 +49,6 @@ public class creationUtilisateurForm {
 	 */
 	private Boolean erreur;
 
-	private Map<String, String> erreurs = new HashMap<String, String>();
 	private UtilisateurDao utilisateurDao;
 	
 	public creationUtilisateurForm( UtilisateurDao utilisateurDao ) {
@@ -77,10 +73,6 @@ public class creationUtilisateurForm {
 		return erreur;
 	}
 
-	public Map<String, String> getErreurs() {
-		return erreurs;
-	}
-
 	/**
 	 * Retourne un utilisateur en fonction des champs renseignes et
 	 * determine le resultat de la creation en fonction des champs renseignes
@@ -99,16 +91,24 @@ public class creationUtilisateurForm {
 		util.setLogin( login );
 		util.setPassword( password);
 		
+		try {
+			Utilisateur ut= utilisateurDao.trouver(login);
+			erreur=true;
+			message="Le login "+ut.getLogin()+" est déjà utilisé <br> <a href=\"creationUtilisateur\">Cliquez ici</a> pour revenir au formulaire de création d'un utilisateur.";
+		} catch (Exception e) {
+			if ( nom.trim().isEmpty() || prenom.trim().isEmpty() ||
+					adresse.trim().isEmpty() ||login.trim().isEmpty() ||password.trim().isEmpty() ) {
+				message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. <br> <a href=\"creationUtilisateur\">Cliquez ici</a> pour accéder au formulaire de création d'un utilisateur.";
+				erreur = true;
+			} else {
+				utilisateurDao.creer( util );
+				message = "Utilisateur créé avec succès !";
+				erreur = false;
+			}	
+		}
+		
 
-		if ( nom.trim().isEmpty() || prenom.trim().isEmpty() ||
-				adresse.trim().isEmpty() ||login.trim().isEmpty() ||password.trim().isEmpty() ) {
-			message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. <br> <a href=\"creerUtilisateur.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un utilisateur.";
-			erreur = true;
-		} else {
-			utilisateurDao.creer( util );
-			message = "Utilisateur créé avec succès !";
-			erreur = false;
-		}		
+			
 		return(util);
 	}
 

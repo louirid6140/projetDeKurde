@@ -10,13 +10,14 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import beans.Utilisateur;
-
+/**
+ * <b>UtilisateurDAO permet d'enregistrer les utilisateurs dans notre base de donnees. C'est une classe DAO.</b>
+ */
 @Stateless
 public class UtilisateurDao {
 	private static final String JPQL_SELECT_PAR_LOGIN = "SELECT u FROM Utilisateur u WHERE u.login=:login";
-	private static final String JPQL_SELECT_PAR_ID = "SELECT u FROM Utilisateur u WHERE u.id_util=:id_util";
 	private static final String PARAM_LOGIN           = "login";
-	private static final String PARAM_ID           = "id_util";
+
 
 	// Injection du manager, qui s'occupe de la connexion avec la BDD
 	@PersistenceContext( unitName = "bdd_sdzee_PU" )
@@ -36,7 +37,7 @@ public class UtilisateurDao {
 	}
 
 	/**
-	 *  Recherche d'un utilisateur à partir de son adresse email
+	 *  Recherche d'un utilisateur à partir de son login
 	 * @param email
 	 * @return
 	 * @throws DAOException
@@ -55,29 +56,10 @@ public class UtilisateurDao {
 		return utilisateur;
 	}
 
-	/**
-	 * Retrouve un utilisateur à partir de son identifiant
-	 * @param id
-	 * @return l'utilisateur
-	 * @throws DAOException
-	 */
-	public Utilisateur trouverParId(int id) throws DAOException {
-		Utilisateur utilisateur = null;
-		Query requete = em.createQuery( JPQL_SELECT_PAR_ID );
-		requete.setParameter( PARAM_ID, id );
-		try {
-			utilisateur = (Utilisateur) requete.getSingleResult();
-		} catch ( NoResultException e ) {
-			return null;
-		} catch ( Exception e ) {
-			throw new DAOException( e );
-		}
-		return utilisateur;
-	}
 
 
 	/**
-	 *  
+	 *  Permet de retourner la liste de tous les utilisateurs de la bdd
 	 * @return La liste de tous les utilisateurs de la base de données
 	 */
 	@SuppressWarnings("unchecked")

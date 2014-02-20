@@ -3,13 +3,15 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>Menu Administrateur</title>
+<title>Menu Principal</title>
 <link type="text/css" rel="stylesheet"
 	href="<c:url 
 	value="/inc/style.css"/>" />
 </head>
-<body>
-	<div id="menu">
+<body>	
+<fieldset>	
+<legend>Menu principal</legend>
+	<div>
 		<p>
 			<a href="<c:url value="/creationAdministrateur"/>">Se connecter
 				en tant qu'administrateur</a>
@@ -18,5 +20,6 @@
 			<a href="<c:url value="/connectionUtilisateur"/>">Se connecter en tant qu'utilisateur</a>
 		</p>
 	</div>
+</fieldset>	
 </body>
 </html>

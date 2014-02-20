@@ -46,7 +46,6 @@ public class ListerUtilisateurs extends HttpServlet {
 		des clients */
 		
 		List<Utilisateur> al = utilisateurDao.trouverTous();
-
 		
 		/* Création de la liste et des données */
 		  List<Map<String, String>> liste = new ArrayList<Map<String, String>>();
@@ -60,8 +59,8 @@ public class ListerUtilisateurs extends HttpServlet {
 		  }		
 		
 		request.setAttribute( "liste", liste );
-		this.getServletContext().getRequestDispatcher( VUE).forward( request, response );
-	
+		
+		 this.getServletContext().getRequestDispatcher( VUE).forward( request, response );
 	}
 
 	/**

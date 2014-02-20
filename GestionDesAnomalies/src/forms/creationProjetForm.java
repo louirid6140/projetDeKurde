@@ -67,7 +67,7 @@ public class creationProjetForm {
 	public Boolean getErreur() {
 		return erreur;
 	}
-	
+
 	public Map<String, String> getErreurs() {
 		return erreurs;
 	}
@@ -90,10 +90,12 @@ public class creationProjetForm {
 			message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. <br> <a href=\"projets\">Cliquez ici</a> pour accéder au formulaire de création d'un projet.";
 			erreur = true;
 		} else {
-			projetDao.creer( proj );
-			message = "Projet créé avec succès !";
+			//projetDao.creer( proj );
+			message = "Projet créé ou modifié avec succès !";
 			erreur = false;
+
 		}
+
 		return(proj);
 	}
 

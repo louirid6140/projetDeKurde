@@ -1,10 +1,17 @@
 package beans;
 
-import javax.persistence.Column;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * <b>Projet est la classe representant un projet informatique. C'est une classe bean.</b>
@@ -16,18 +23,24 @@ import javax.persistence.Id;
  * </ul>
  * </p>
  */
+
+
+
 @Entity
+@XmlRootElement(name="Projet")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Projet {
-
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY )
-	private Long id_projet; 
-
+	@GeneratedValue( strategy = GenerationType.IDENTITY )
+	private int id_projet;
+	
 	/**
 	 * nomProjet correspond au nom du projet
 	 * e.g "Project Manager"
 	 * 
 	 */
+	@XmlElement(name="nomProjet")
 	private String nomProjet ; 
 
 	/**
@@ -35,8 +48,16 @@ public class Projet {
 	 * e.g "Echeances, nombre de personnes"
 	 * 
 	 */
-	@Column( name = "caracProjet" )
 	private String caracProjet;
+	
+	@XmlElementWrapper(name="Anomalies")
+	@XmlElement(name="Anomalie")
+	@OneToMany
+	private List<Anomalie> listeAnomalie;
+	
+
+
+
 
 	/**
 	 * Constructeur d'un projet
@@ -45,12 +66,13 @@ public class Projet {
 		super();
 	}
 
-	/**
-	 * @return l'identifiant du projet
-	 */
-	public Long getId_projet() {
-		return id_projet;
+
+	public Projet(String nomProjet, String caracProjet) {
+		super();
+		this.nomProjet = nomProjet;
+		this.caracProjet = caracProjet;
 	}
+
 
 	/**
 	 * Retourne les caracteristiques du projet
@@ -89,6 +111,14 @@ public class Projet {
 	public void setNomProjet(String nomProjet) {
 		this.nomProjet = nomProjet;
 	}
+	
+	public List<Anomalie> getListeAnomalie() {
+		return listeAnomalie;
+	}
 
 
+	public void setListeAnomalie(List<Anomalie> listeAnomalie) {
+		this.listeAnomalie = listeAnomalie;
+	}
+	
 }

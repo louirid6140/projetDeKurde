@@ -30,11 +30,38 @@
     <servlet-name>AjouterUnProjet</servlet-name>
     <servlet-class>servlets.AjouterUnProjet</servlet-class>
   </servlet>
-    <servlet>
-    <servlet-name>AjouterUneAnomalie </servlet-name>
-    <servlet-class>servlets.AjouterUneAnomalie </servlet-class>
+  <servlet>
+    <servlet-name>AjouterUneAnomalie</servlet-name>
+    <servlet-class>servlets.AjouterUneAnomalie</servlet-class>
   </servlet>
-  
+  <servlet>
+    <servlet-name>AffectationAnomalie</servlet-name>
+    <servlet-class>servlets.AffectationAnomalie</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ListerAnomalie</servlet-name>
+    <servlet-class>servlets.ListerAnomalie</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ListerProjets</servlet-name>
+    <servlet-class>servlets.ListerProjets</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UtilisateurParAnomalie</servlet-name>
+    <servlet-class>servlets.UtilisateurParAnomalie</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ModifierProjet</servlet-name>
+    <servlet-class>servlets.ModifierProjet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ModifierAnomalie</servlet-name>
+    <servlet-class>servlets.ModifierAnomalie</servlet-class>
+  </servlet>
+    <servlet>
+    <servlet-name>MajAnomalie</servlet-name>
+    <servlet-class>servlets.MajAnomalie</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>CreationAdministrateur</servlet-name>
     <url-pattern>/creationAdministrateur</url-pattern>
@@ -63,9 +90,37 @@
     <servlet-name>AjouterUnProjet</servlet-name>
     <url-pattern>/projets</url-pattern>
   </servlet-mapping>
-    <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>AjouterUneAnomalie</servlet-name>
     <url-pattern>/anomalies</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AffectationAnomalie</servlet-name>
+    <url-pattern>/affectation</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ListerAnomalie</servlet-name>
+    <url-pattern>/listeAnomalies</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ListerProjets</servlet-name>
+    <url-pattern>/listeProjets</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UtilisateurParAnomalie</servlet-name>
+    <url-pattern>/utilisateurParAnomalie</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ModifierProjet</servlet-name>
+    <url-pattern>/modifierProjet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ModifierAnomalie</servlet-name>
+    <url-pattern>/modifierAnomalie</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>MajAnomalie</servlet-name>
+    <url-pattern>/majAnomalie</url-pattern>
   </servlet-mapping>
   <jsp-config>
     <jsp-property-group>

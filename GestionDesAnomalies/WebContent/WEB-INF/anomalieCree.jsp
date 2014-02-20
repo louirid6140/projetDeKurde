@@ -29,11 +29,6 @@ value="/inc/style.css"/>" />
 				</p>
 				
 				<p>
-					Nom utilisateur :
-					<c:out value="${anomalie.nomUtilisateurAff}" />
-				</p>
-				
-				<p>
 					Notes
 					<c:out value="${anomalie.notes}" />
 				</p>

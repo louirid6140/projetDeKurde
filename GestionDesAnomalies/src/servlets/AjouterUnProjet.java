@@ -22,17 +22,17 @@ import forms.creationProjetForm;
 
 public class AjouterUnProjet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * ATT_ANOMALIE   constante donnant un nom a l attribut projet
 	 */
 	public static final String ATT_PROJET     = "projet";
-	
+
 	/**
 	 * ATT_MESSAGE   constante donnant un nom a l attribut message
 	 */
 	public static final String ATT_MESSAGE     = "message";
-	
+
 	/**
 	 * ATT_ERREUR    constante donnant un nom a l attribut erreur
 	 */
@@ -42,28 +42,28 @@ public class AjouterUnProjet extends HttpServlet {
 	 * VUE_SUCCES    constante donnant l url de la page à afficher en cas de succes
 	 */
 	public static final String VUE_SUCCES             ="/WEB-INF/projetCree.jsp";
-	
-	
+
+
 	/**
 	 * VUE_FORMULAIRE_ANOMALIE    constante donnant l url de la page à afficher pour creer un projet
 	 */
-	
-	
+
+
 	public static final String VUE_FORMULAIRE_PROJET        ="/WEB-INF/ajouterProjet.jsp";
-	
+
 	/**
 	 * On injecte l'EJB
 	 */
 	@EJB
-    private ProjetDao   projetDao;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AjouterUnProjet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	private ProjetDao   projetDao;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public AjouterUnProjet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * Permet d'afficher la page de formulaire à remplir pour creer un projet en cas de requete de type GET
@@ -82,6 +82,15 @@ public class AjouterUnProjet extends HttpServlet {
 		Projet proj=projForm.CreerProjet(request);
 		String message=projForm.getMessage();
 		boolean erreur=projForm.getErreur();
+
+		try{
+			Projet pr = projetDao.trouver(proj.getNomProjet());
+			erreur=true;
+			message="Le nom de projet "+pr.getNomProjet()+" est déjà utilisé <br> <a href=\"projets\">Cliquez ici</a> pour revenir au formulaire de création d'un projet.";
+		}catch(Exception e){
+			projetDao.creer( proj );
+		}
+
 		/* Ajout du bean et du message à l'objet requête */
 		request.setAttribute( ATT_PROJET,proj );
 		request.setAttribute( ATT_MESSAGE, message );

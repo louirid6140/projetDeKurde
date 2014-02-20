@@ -2,8 +2,6 @@ package beans;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -21,10 +19,6 @@ import javax.persistence.Id;
  */
 @Entity
 public class Utilisateur {
-	
-	@Id
-	@GeneratedValue( strategy = GenerationType.IDENTITY )
-	private Long id_util;
 
 
 	/**
@@ -51,7 +45,9 @@ public class Utilisateur {
      *login correspond au pseudo de l'utilisateur
      * e.g "rlm"
      * 
+     * 
      */
+	@Id
 	private String login;
 	
     /**
@@ -63,14 +59,29 @@ public class Utilisateur {
 	private String password;
 	
 	
-	/**
-	 * @return l'identifiant de l'utilisateur
-	 */
-	  public Long getId_util() {
-			return id_util;
-		}
 	
-    /**
+	public Utilisateur(){
+		super();
+	}
+	
+	/**
+	 * Constructeur de la classe
+	 * @param nom
+	 * @param prenom
+	 * @param email
+	 * @param login
+	 * @param password
+	 */
+    public Utilisateur(String nom, String prenom, String email, String login,String password) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.login = login;
+		this.password = password;
+	}
+
+	/**
      * Retourne le prenom de l'utilisateur
      * 
      * @return prenom utilisateur.
@@ -164,7 +175,7 @@ public class Utilisateur {
 	}
 	
 	public String toString(){
-		return ("Utilisateur : "+this.id_util+", Nom : "+this.nom+", Prénom : "+this.prenom+
+		return ("Utilisateur : Nom : "+this.nom+", Prénom : "+this.prenom+
 				", email : "+this.email+", login : "+this.login);
 	}
 }

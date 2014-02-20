@@ -2,6 +2,10 @@ package servlets;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -11,7 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.Anomalie;
+import beans.Projet;
 import dao.AnomalieDao;
+import dao.ProjetDao;
+import dao.UtilisateurDao;
 import forms.creationAnomalieForm;
 
 /**
@@ -55,6 +62,10 @@ public class AjouterUneAnomalie extends HttpServlet {
 	 */
 	@EJB
 	private AnomalieDao   anomalieDao;
+	@EJB
+	private UtilisateurDao utilisateurDao;
+	@EJB
+	private ProjetDao projetDao;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -68,6 +79,19 @@ public class AjouterUneAnomalie extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+		List<Projet> al = projetDao.trouverTous();
+
+		/* Création de la liste et des utilisateurs */
+		List<Map<String, String>> liste = new ArrayList<Map<String, String>>();
+		for(int i=0; i<=al.size()-1; i++){
+			Map<String, String> proj = new HashMap<String, String>();
+			proj.put("nom", al.get(i).getNomProjet());
+			liste.add(proj);
+		}		
+
+		request.setAttribute( "liste", liste );
 		this.getServletContext().getRequestDispatcher(VUE_FORMULAIRE_ANOMALIE).forward( request, response );
 	}
 
@@ -80,6 +104,22 @@ public class AjouterUneAnomalie extends HttpServlet {
 		Anomalie ano=anoForm.CreerAnomalie(request);
 		String message=anoForm.getMessage();
 		boolean erreur=anoForm.getErreur();
+
+		
+		try{
+			Anomalie anom = anomalieDao.trouver(ano.getSujet());
+			erreur=true;
+			message="Le sujet de l'anomalie est déjà utilisé <br> <a href=\"projets\">Cliquez ici</a> pour revenir au formulaire de création d'un projet.";
+		}catch(Exception e){
+			try{
+				Projet proj=projetDao.trouver(ano.getNomProjetAff());
+				ano.setProjet(proj);
+			}catch(Exception e1){
+			}
+			anomalieDao.creer( ano);		
+			
+		}
+		
 		/* Ajout du bean et du message à l'objet requête */
 		request.setAttribute( ATT_ANOMALIE,ano );
 		request.setAttribute( ATT_MESSAGE, message );

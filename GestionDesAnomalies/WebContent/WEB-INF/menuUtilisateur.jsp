@@ -26,9 +26,19 @@
 					</p>
 					
 					<p>
+						<a href="<c:url value="/listeProjets"/>">Obtenir la liste des projets</a>
+					</p>
+					
+					<p>
 						<a href="<c:url value="/anomalies"/>">Ajouter une anomalie</a>
 					</p>
-				
+						
+					<p>
+						<a href="<c:url value="/affectation"/>">Affecter une anomalie à un utilisateur</a>
+					</p>
+						<p>
+						<a href="<c:url value="/listeAnomalies"/>">Obtenir la liste des anomalies affectées</a>
+					</p>
 					
 					<a href="<c:url value="/Deconnection"/>">Se déconnecter. Retour au menu principal.</a>
 

@@ -19,6 +19,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Administrateur {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	private long id_admin;

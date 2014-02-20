@@ -1,11 +1,11 @@
 package beans;
 
-import java.util.ArrayList;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 /**
  * <b>Anomalie est la classe representant une anomalie sur un projet. C'est une classe bean.</b>
  * <p>
@@ -22,9 +22,24 @@ import javax.persistence.Id;
 
 @Entity
 public class Anomalie {
+	
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
-	private Long id_anom;
+	private int id_anomalie;
+
+	public int getId_anomalie() {
+		return id_anomalie;
+	}
+
+
+	public void setId_anomalie(int id_anomalie) {
+		this.id_anomalie = id_anomalie;
+	}
+
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
 
 	/**
 	 *sujet correspond a une courte description de l'anomalie
@@ -38,10 +53,12 @@ public class Anomalie {
 	 * e.g "l'incrementation des indices ne se fait pas correctement. Explications..."
 	 * 
 	 */
+
+
 	private String	description;
 
 	/**
-	 *etat correspond l'avancement de la resolution de l'anomalie
+	 * etat correspond l'avancement de la resolution de l'anomalie
 	 * e.g "RESOLUE"
 	 * 
 	 */
@@ -49,11 +66,16 @@ public class Anomalie {
 	private String etat;
 
 	/**
-	 *nomUtilisateurAff correspond au nom de l'utilisateur qui est affecte a la resolution de l'anomalie
+	 * nomUtilisateurAff correspond au nom de l'utilisateur qui est affecte a la resolution de l'anomalie
 	 * e.g "Loir-Mongazon"
 	 * 
 	 */
 	private String nomUtilisateurAff;
+
+	/**
+	 * nomProjetAff correspond au nom du projet qui est affecte à l'anomalie
+	 */
+	private String nomProjetAff;
 
 	/**
 	 *notes correspond au notes saisies par l'utilisateur au cours de la tache
@@ -61,6 +83,20 @@ public class Anomalie {
 	 * 
 	 */
 	private String notes;
+	
+	/**
+	 * Booléen qui sera passé à true lorsque l'anomalie sera affectée à un utilisateur
+	 */
+	private boolean affecte=false;
+
+	@ManyToOne
+	private Projet projet;
+
+	@ManyToOne
+	private Utilisateur utilisateur;
+
+
+
 
 	/**
 	 * Constructeur d'un anomalie
@@ -68,14 +104,7 @@ public class Anomalie {
 	public Anomalie() {
 		super();
 	}
-	
-	/**
-	 * @return l'identifiant de l'anomalie
-	 */
 
-	public Long getId_anom() {
-		return id_anom;
-	}
 
 	/**
 	 * Retourne le sujet de l'anomalie
@@ -151,6 +180,22 @@ public class Anomalie {
 	public void setNomtUtilisateurAff(String nomUtilisateurAff) {
 		this.nomUtilisateurAff = nomUtilisateurAff;
 	}
+	
+	/**
+	 * 
+	 * @return Le nom du projet affecté
+	 */
+	public String getNomProjetAff() {
+		return nomProjetAff;
+	}
+
+	/**
+	 * Modifie le nom du projet affecté
+	 * @param nomProjetAff
+	 */
+	public void setNomProjetAff(String nomProjetAff) {
+		this.nomProjetAff = nomProjetAff;
+	}
 
 	/**
 	 * Retourne la liste des notes sur l'anomalie
@@ -169,9 +214,55 @@ public class Anomalie {
 	 */
 	public void ajouterNote(String nouvelleNote){
 		notes= nouvelleNote;
-		
+	}
+	
+	/**
+	 * Getter de affectée
+	 * @return
+	 */
+	public boolean isAffecte() {
+		return affecte;
 	}
 
+	/**
+	 * Setter de affecte
+	 * @param affecte
+	 */
+	public void setAffecte(boolean affecte) {
+		this.affecte = affecte;
+	}
+
+	/**
+	 * Getter pour le projet
+	 * @return le projet
+	 */
+	public Projet getProjet() {
+		return projet;
+	}
+
+	/**
+	 * Setter pour le projet
+	 * @param projet
+	 */
+	public void setProjet(Projet projet) {
+		this.projet = projet;
+	}
+
+	/**
+	 * Getter pour l'utilisateur
+	 * @return l'utilisateur
+	 */
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+	/**
+	 * Setter pout l'utilisateur
+	 * @param utilisateur
+	 */
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
 
 
 }

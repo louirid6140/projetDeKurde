@@ -1,6 +1,8 @@
 package forms;
 
-import javax.ejb.EJB;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import beans.Utilisateur;
@@ -49,11 +51,13 @@ public class connectionUtilisateurForm {
 	private Boolean erreurConnection;
 	
 	
-	/**
-	 * On instancie un utilisateur Dao
-	 */
-	@EJB
+	private Map<String, String> erreurs = new HashMap<String, String>();
 	private UtilisateurDao utilisateurDao;
+	
+	public connectionUtilisateurForm( UtilisateurDao utilisateurDao ) {
+        this.utilisateurDao = utilisateurDao;
+    }
+	
 
 	/**
 	 * Retourne le resultat de la connexion
@@ -72,6 +76,12 @@ public class connectionUtilisateurForm {
 	public Boolean getErreurConnection() {
 		return erreurConnection;
 	}
+	
+	
+	public Map<String, String> getErreurs() {
+		return erreurs;
+	}
+	
 
 	/**
 	 * Retourne un utilisateur en fonction des champs renseignes et
@@ -86,14 +96,11 @@ public class connectionUtilisateurForm {
 		user.setLogin(loginUser);
 		user.setPassword(passwordUser);	
 		erreurConnection=false;
-		System.out.println(loginUser);
-	
+		
 		try {
-			Utilisateur ut= utilisateurDao.trouver("rlm");
-			//Utilisateur ut= utilisateurDao.trouver(loginUser);
-			//validationConnectionUtil(passwordUser,ut.getPassword());
+			Utilisateur ut= utilisateurDao.trouver(loginUser);
+			validationConnectionUtil(passwordUser,ut.getPassword());
 		} catch (Exception e) {
-			System.out.println("catch");
 			erreurConnection=true;
 		}
 		/* Initialisation du résultat global de la validation. */
